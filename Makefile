@@ -3,6 +3,7 @@
 build: gomodgen
 	export GO111MODULE=on
 	env GOOS=linux go build -ldflags="-s -w" -o bin/calculator calculator/main.go
+	env GOOS=linux go build -ldflags="-s -w" -o bin/calc_exec calc_exec/main.go
 
 clean:
 	rm -rf ./bin ./vendor go.sum
