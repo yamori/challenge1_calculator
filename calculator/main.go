@@ -22,19 +22,41 @@ var HtmlTemplate = `
                 //$("#calc_inputs").val("");
                 //$("#calc_inputs").val( "h");
             }
-            $(document).on('keypress',function(e) {
-                if(e.which == 13) {
-                    var nextCalcs = $("#calc_inputs").val();
-                    $("#calc_tape").val($("#calc_tape").val() + "\n" + nextCalcs);
-                    $("#calc_inputs").val("");
-                    console.log(nextCalcs);
 
-                    var psconsole = $('#calc_tape');
-                    if(psconsole.length) {
-                        psconsole.scrollTop(psconsole[0].scrollHeight - psconsole.height());
+            var previousVal = "";
+            $(document).on('keypress',function(e) {
+                if(e.which != 13) { return; } // Only on 'enter'
+
+                var newOps = $("#calc_inputs").val();
+                $("#calc_tape").val($("#calc_tape").val() + "\n" + newOps);
+                newOps = newOps.replace(/\+/g,"plus"); // because '+' is reserved from URL query strings
+
+                $.ajax({
+                    url: "/calc_exec?previousVal=" + previousVal + "&newOps=" + newOps,
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "charset=utf-8",
+                    success: function (response, status, http) {
+                        // (success, nothing to do))
+                        previousVal = response.returnVal;
+                        $("#calc_tape").val($("#calc_tape").val() + "\n\n            " + response.returnVal);
+                    },
+                    error: function (error) {
+                        previousVal = response.returnVal;
+                        $("#calc_tape").val($("#calc_tape").val() + "\nINPUT ERROR\n\n            0");
+                    },
+                    complete: function(data) {
+                        $("#calc_inputs").val("");
+
+                        // Scroll to bottom of 'tape'
+                        var psconsole = $('#calc_tape');
+                        if(psconsole.length) {
+                            psconsole.scrollTop(psconsole[0].scrollHeight - psconsole.height());
+                        }
                     }
-                }
+                });
             });
+
             $( document ).ready(function() {
                 $("#calc_inputs").val("");
                 $("#calc_inputs").focus();

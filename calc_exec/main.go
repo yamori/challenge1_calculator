@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+    "strings"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -14,6 +15,8 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 	//Get the query parameters that was sent
     newOps := request.QueryStringParameters["newOps"]
+    // '+' is reserved from query string
+    newOps = strings.ReplaceAll(newOps, "plus", "+") 
     previousVal := request.QueryStringParameters["previousVal"]
 
     // blank idenfitifiers used as the 'err' goes unused, currenly
@@ -24,7 +27,11 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	message := fmt.Sprintf(" { \"returnVal\" : %.3f } ", result)
 
 	//Returning response with AWS Lambda Proxy Response
-	return events.APIGatewayProxyResponse{Body: message, StatusCode: 200}, nil
+	return events.APIGatewayProxyResponse{
+        Headers:    map[string]string{"content-type": "application/json"},
+        Body: message, 
+        StatusCode: 200,
+    }, nil
 }
 
 
