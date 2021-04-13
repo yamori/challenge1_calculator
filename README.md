@@ -4,7 +4,7 @@ Currently deployed [calculator](https://la2bc28voc.execute-api.us-east-1.amazona
 
 ## Design
 
-A two golang binaries deployed via Serverless to AWS (underpinned by AWS HTTP_API and Lambdas).  The first binary is offered at resource `/calculator` and offers a static html page simulating a calculator.  The second binary is offered at `/calc_exec` and receives ajax arithmetic/operations (from the 'calculator') and returns the result.
+Two(2) golang binaries deployed via Serverless to AWS (underpinned by AWS HTTP_API and Lambdas).  The first binary is offered at resource `/calculator` and offers a static html page simulating a calculator.  The second binary is offered at `/calc_exec` and receives ajax arithmetic/operations (sent from the 'calculator') and returns the result, and the 'calculator' then displays.
 
 ## Things learned
 
