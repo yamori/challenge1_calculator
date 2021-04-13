@@ -2,6 +2,10 @@
 
 Currently deployed [calculator](https://la2bc28voc.execute-api.us-east-1.amazonaws.com/calculator) (under construction).
 
+## Design
+
+A two golang binaries deployed via Serverless to AWS (underpinned by AWS HTTP_API and Lambdas).  The first binary is offered at resource `/calculator` and offers a statis html page simulating a calculator.  The second binary is offered at `/calc_exec` and receives ajax arithmetic/operations (from the 'calculator') and returns the result.
+
 ## Things learned
 
 - Using AWS [HTTP_api's](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html), and configuring GO handler to pick them up properly (see this [commit](https://github.com/yamori/challenge1_calculator/commit/51733e05e3ae3fe50297b320f168a9b450014944))
@@ -29,3 +33,4 @@ sls remove
 ## Links and Resources
 
 - [serverless go/lambda template](https://www.serverless.com/framework/docs/providers/aws/examples/hello-world/go/)
+- [goValuate](https://github.com/Knetic/govaluate), for evaluating math expressions in strings
