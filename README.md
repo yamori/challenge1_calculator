@@ -5,6 +5,8 @@ Currently deployed [calculator](https://la2bc28voc.execute-api.us-east-1.amazona
 ## Things learned
 
 - Using AWS [HTTP_api's](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html), and configuring GO handler to pick them up properly (see this [commit](https://github.com/yamori/challenge1_calculator/commit/51733e05e3ae3fe50297b320f168a9b450014944))
+- GO modules, dependency management
+- GO is opinionated about unused variables, can use the [blank identifier](https://stackoverflow.com/a/21744129) for a quick fix
 
 ## Dependencies
 
