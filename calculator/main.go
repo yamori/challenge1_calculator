@@ -105,6 +105,7 @@ var HtmlTemplate = `
             left: 20px;
             top: 20px;
             color: white;
+            -webkit-transform:translate3d(0,0,1px);
         }
         </style>
     </head>
