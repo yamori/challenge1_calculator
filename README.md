@@ -9,8 +9,10 @@ Two(2) golang binaries deployed via Serverless to AWS (underpinned by AWS HTTP_A
 ## Things I Learned
 
 - Using AWS [HTTP_api's](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html), and configuring GO handler to pick them up properly (see this [commit](https://github.com/yamori/challenge1_calculator/commit/51733e05e3ae3fe50297b320f168a9b450014944))
+- GO is very opinionated about packages, project directories.  Learn this first!
 - GO modules, dependency management
 - GO is opinionated about unused variables, can use the [blank identifier](https://stackoverflow.com/a/21744129) for a quick fix
+- GO compiles down to binaries very easily, definitely wrap in a `Makefile`.  Makes for great candidate of serverless API/functions
 
 ## Dependencies
 
