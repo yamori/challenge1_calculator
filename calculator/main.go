@@ -28,7 +28,7 @@ var HtmlTemplate = `
                 if(e.which != 13) { return; } // Only on 'enter'
 
                 var newOps = $("#calc_inputs").val();
-                $("#calc_tape").val($("#calc_tape").val() + "\n" + newOps);
+                $("#calc_tape").val($("#calc_tape").val() + "\n  " + newOps);
                 newOps = newOps.replace(/\+/g,"plus"); // because '+' is reserved from URL query strings
 
                 $.ajax({
@@ -60,12 +60,26 @@ var HtmlTemplate = `
             $( document ).ready(function() {
                 $("#calc_inputs").val("");
                 $("#calc_inputs").focus();
-                $("#calc_tape").val("\n".repeat(22));
+                $("#calc_tape").val("\n".repeat(32));
             });
         </script>
         <style>
-        body {
-            background-color: linen;
+        .bg-image {
+            /* The image used */
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Background_3-8_01.43702ae9.jpg/1280px-Background_3-8_01.43702ae9.jpg");
+
+            /* Add the blur effect */
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -1;
         }
         #calc_tape {
 			font-family: 'Courier New', Courier, monospace;
@@ -86,12 +100,21 @@ var HtmlTemplate = `
             transform: translate(-50%, -50%);
             margin: 0 auto;
         }
+        #h4_label {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            color: white;
+        }
         </style>
     </head>
     <body>
-		<h1>Under Construction!  Incomplete!</h1>
-        <textarea id="calc_tape" name="w3review" rows="22" cols="40"></textarea>
-        <input id="calc_inputs" placeholder="calc commands here, then 'enter'" type="text" onkeyup="removeBadChars();">
+        <h4 id="h4_label">GoLang Server-side Calculator</h4>
+        <div class="bg-image">
+            </div>
+            <textarea id="calc_tape" name="w3review" rows="32" cols="40"></textarea>
+            <input id="calc_inputs" placeholder="calc commands here, then 'enter'" type="text" onkeyup="removeBadChars();">
+        
     </body>
 </html>
 `
