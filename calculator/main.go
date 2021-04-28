@@ -42,7 +42,7 @@ var HtmlTemplate = `
                         $("#calc_tape").val($("#calc_tape").val() + "\n\n            " + response.returnVal);
                     },
                     error: function (error) {
-                        previousVal = response.returnVal;
+                        previousVal = 0;
                         $("#calc_tape").val($("#calc_tape").val() + "\nINPUT ERROR\n\n            0");
                     },
                     complete: function(data) {
