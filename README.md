@@ -1,6 +1,6 @@
 # CodeChallenge1 - Calculator
 
-Currently deployed [calculator](https://la2bc28voc.execute-api.us-east-1.amazonaws.com/calculator) (under construction).
+(not currently deployed)
 
 ## Design
 
